@@ -13,8 +13,8 @@ const router = express.Router();
 router.get("/", getProducts);
 router.get("/:id", getProductById);
 router.get("/:id", getProductById);
-router.post("/", addProduct);
-router.patch("/:id", updateProduct);
+router.post("/", adminMiddleware, addProduct);
+router.patch("/:id", adminMiddleware, updateProduct);
 router.delete("/:id", adminMiddleware, deleteProduct);
 
 module.exports = router;

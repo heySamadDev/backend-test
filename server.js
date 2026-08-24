@@ -3,6 +3,7 @@ const productRoutes = require("./routes/productRoutes.js");
 const fs = require("fs");
 const path = require("path");
 const orderRoutes = require("./routes/orderRoutes.js");
+const checkoutRoutes = require("./routes/checkoutRoutes.js");
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use(logRequest);
 
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
+app.use("/checkout", checkoutRoutes);
 
 app.use((err, req, res, next) => {
   console.error("Error Trace:", err);
