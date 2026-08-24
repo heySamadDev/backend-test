@@ -44,6 +44,7 @@ app.use((err, req, res, next) => {
   const message = err.message || "Something went wrong";
 
   return res.status(statusCode).json({
+    success: false,
     message: message,
   });
 });
