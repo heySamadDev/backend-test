@@ -36,10 +36,13 @@ app.use(logRequest);
 app.use("/products", productRoutes);
 
 app.use((err, req, res, next) => {
-  console.error(err);
+  console.error("Error Trace:", err);
 
-  res.status(err.statusCode || 500).json({
-    message: err.message || "Something went wrong",
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Something went wrong";
+
+  return res.status(statusCode).json({
+    message: message,
   });
 });
 
