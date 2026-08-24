@@ -27,6 +27,8 @@ const addOrders = (req, res, next) => {
     return next(err);
   }
 
+  const Quantity = Number(quantity);
+
   const product = products.find((p) => p.id === Number(productId));
   if (!product) {
     const err = new Error("Product not found");
@@ -34,10 +36,20 @@ const addOrders = (req, res, next) => {
     return next(err);
   }
 
+  if (product.stock < Quantity) {
+    const err = new Error(
+      `Insufficient stock. Only ${product.stock} items remaining.`,
+    );
+    err.statusCode = 400;
+    return next(err);
+  }
+
+  product.stock -= Quantity;
+
   const newOrder = {
     id: orders.length > 0 ? orders[orders.length - 1].id + 1 : 1,
     product: product,
-    quantity: Number(quantity),
+    quantity: Quantity,
   };
 
   orders.push(newOrder);
