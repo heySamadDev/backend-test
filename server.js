@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const orderRoutes = require("./routes/orderRoutes.js");
 const checkoutRoutes = require("./routes/checkoutRoutes.js");
+const logRequest = require("./utils/logger.js");
 
 const app = express();
 
@@ -16,20 +17,6 @@ if (!fs.existsSync(logDir)) {
 
 if (!fs.existsSync(logFilePath)) {
   fs.writeFileSync(logFilePath, "");
-}
-
-function logRequest(req, res, next) {
-  const log = `${new Date().toISOString()} - ${req.method} - ${req.url} - IP: ${req.ip}\n`;
-
-  fs.appendFile(logFilePath, log, (err) => {
-    if (err) {
-      console.error("Failed to write log:", err.message);
-      return next();
-    }
-
-    console.log(log.trim());
-    next();
-  });
 }
 
 app.use(express.json());

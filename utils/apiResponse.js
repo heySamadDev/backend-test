@@ -1,8 +1,10 @@
 class ApiResponse {
-  constructor(status, message, data = null) {
-    this.status = status;
-    this.message = message;
-    this.data = data;
+  constructor(res, status, message, data = null) {
+    return res.status(status).json({
+      success: true,
+      message,
+      data,
+    });
   }
 }
 
