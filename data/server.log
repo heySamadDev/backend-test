@@ -15,3 +15,8 @@
 2026-08-24T11:08:10.938Z - GET - /checkout - IP: ::ffff:127.0.0.1
 2026-08-24T11:08:19.324Z - POST - /checkout - IP: ::ffff:127.0.0.1
 2026-08-24T11:08:36.031Z - POST - /checkout - IP: ::ffff:127.0.0.1
+2026-09-01T07:52:20.666Z - GET - /products - IP: ::1
+2026-09-01T07:52:23.641Z - GET - /products - IP: ::1
+2026-09-01T07:52:34.558Z - GET - /products - IP: ::ffff:127.0.0.1
+2026-09-01T07:56:29.932Z - POST - /orders - IP: ::ffff:127.0.0.1
+2026-09-01T07:57:22.080Z - POST - /orders - IP: ::ffff:127.0.0.1

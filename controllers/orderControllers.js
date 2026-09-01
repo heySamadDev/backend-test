@@ -1,8 +1,11 @@
 const orders = require("../data/orders.js");
 const products = require("../data/products.js");
+const ApiResponse = require("../utils/apiResponse.js");
 
 const getOrders = (req, res) => {
-  return res.status(200).json(orders);
+  const response = new ApiResponse(200, null, orders);
+
+  return res.status(response.status).json(response);
 };
 
 const getOrdersById = (req, res, next) => {
@@ -15,7 +18,9 @@ const getOrdersById = (req, res, next) => {
     return next(err);
   }
 
-  return res.status(200).json(order);
+  const response = new ApiResponse(200, null, order);
+
+  return res.status(response.status).json(response);
 };
 
 const addOrders = (req, res, next) => {
@@ -54,10 +59,9 @@ const addOrders = (req, res, next) => {
 
   orders.push(newOrder);
 
-  return res.status(201).json({
-    message: "Order placed successfully",
-    order: newOrder,
-  });
+  const response = new ApiResponse(200, "Order Placed Successfully", newOrder);
+
+  return res.status(response.status).json(response);
 };
 
 module.exports = {
