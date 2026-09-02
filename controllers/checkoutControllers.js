@@ -1,4 +1,5 @@
 const processPayment = require("../services/paymentService.js");
+const ApiResponse = require("../utils/apiResponse.js");
 
 const checkout = async (req, res, next) => {
   try {
@@ -6,10 +7,7 @@ const checkout = async (req, res, next) => {
 
     await processPayment(amount);
 
-    res.status(200).json({
-      success: true,
-      message: "Payment successful",
-    });
+    return new ApiResponse(res, 200, "Payment Successful", null);
   } catch (error) {
     next(error);
   }

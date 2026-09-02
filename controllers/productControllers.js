@@ -1,7 +1,8 @@
 const products = require("../data/products.js");
+const ApiResponse = require("../utils/apiResponse.js");
 
 const getProducts = (req, res) => {
-  return res.status(200).json(products);
+  return new ApiResponse(res, 200, null, products);
 };
 
 const getProductById = (req, res, next) => {
@@ -21,7 +22,7 @@ const getProductById = (req, res, next) => {
     return next(err);
   }
 
-  return res.status(200).json(product);
+  return new ApiResponse(res, 200, null, product);
 };
 
 const addProduct = (req, res, next) => {
@@ -60,10 +61,7 @@ const addProduct = (req, res, next) => {
 
   products.push(newProduct);
 
-  return res.status(201).json({
-    message: "Product added successfully!",
-    newProduct,
-  });
+  return new ApiResponse(res, 201, "Product Added Successfully", newProduct);
 };
 
 const updateProduct = (req, res, next) => {
@@ -101,10 +99,7 @@ const updateProduct = (req, res, next) => {
   product.price = price;
   product.stock = stock;
 
-  return res.status(200).json({
-    message: "Product updated successfully!",
-    product,
-  });
+  return new ApiResponse(res, 200, "Product Updated Successfully", product);
 };
 
 const deleteProduct = (req, res, next) => {
@@ -126,9 +121,7 @@ const deleteProduct = (req, res, next) => {
 
   products.splice(index, 1);
 
-  return res.status(200).json({
-    message: "Product deleted successfully!",
-  });
+  return new ApiResponse(res, 200, "Product Deleted Successfully", null);
 };
 
 module.exports = {
